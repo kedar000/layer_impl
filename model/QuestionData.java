@@ -1,4 +1,4 @@
-package com.example.questionvalidator.model;
+package org.examplemodulespringboot.imple_layer_and_model.model;
 
 public class QuestionData {
 

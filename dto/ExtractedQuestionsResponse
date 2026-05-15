@@ -1,0 +1,28 @@
+package org.examplemodulespringboot.imple_layer_and_model.dto;
+
+import org.examplemodulespringboot.imple_layer_and_model.model.QuestionData;
+
+import java.util.List;
+
+public class ExtractedQuestionsResponse {
+
+    private Integer totalQuestions;
+
+    private List<QuestionData> questions;
+
+    public Integer getTotalQuestions() {
+        return totalQuestions;
+    }
+
+    public void setTotalQuestions(Integer totalQuestions) {
+        this.totalQuestions = totalQuestions;
+    }
+
+    public List<QuestionData> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<QuestionData> questions) {
+        this.questions = questions;
+    }
+}
