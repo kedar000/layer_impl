@@ -1,0 +1,112 @@
+package org.examplemodulespringboot.imple_layer_and_model.dto;
+
+import java.util.Map;
+
+public class EvaluationMetrics {
+
+    // =====================================================
+    // BASIC COUNTS
+    // =====================================================
+
+    private Integer totalQuestions;
+
+    private Integer bertCorrect;
+
+    private Integer hybridCorrect;
+
+    private Integer correctedPredictions;
+
+    private Integer improvedPredictions;
+
+    // =====================================================
+    // ACCURACY
+    // =====================================================
+
+    private Double bertAccuracy;
+
+    private Double hybridAccuracy;
+
+    // =====================================================
+    // CONFUSION MATRIX
+    // =====================================================
+
+    private Map<String, Integer> bertConfusionMatrix;
+
+    private Map<String, Integer> hybridConfusionMatrix;
+
+    // =====================================================
+    // GETTERS / SETTERS
+    // =====================================================
+
+    public Integer getTotalQuestions() {
+        return totalQuestions;
+    }
+
+    public void setTotalQuestions(Integer totalQuestions) {
+        this.totalQuestions = totalQuestions;
+    }
+
+    public Integer getBertCorrect() {
+        return bertCorrect;
+    }
+
+    public void setBertCorrect(Integer bertCorrect) {
+        this.bertCorrect = bertCorrect;
+    }
+
+    public Integer getHybridCorrect() {
+        return hybridCorrect;
+    }
+
+    public void setHybridCorrect(Integer hybridCorrect) {
+        this.hybridCorrect = hybridCorrect;
+    }
+
+    public Integer getCorrectedPredictions() {
+        return correctedPredictions;
+    }
+
+    public void setCorrectedPredictions(Integer correctedPredictions) {
+        this.correctedPredictions = correctedPredictions;
+    }
+
+    public Integer getImprovedPredictions() {
+        return improvedPredictions;
+    }
+
+    public void setImprovedPredictions(Integer improvedPredictions) {
+        this.improvedPredictions = improvedPredictions;
+    }
+
+    public Double getBertAccuracy() {
+        return bertAccuracy;
+    }
+
+    public void setBertAccuracy(Double bertAccuracy) {
+        this.bertAccuracy = bertAccuracy;
+    }
+
+    public Double getHybridAccuracy() {
+        return hybridAccuracy;
+    }
+
+    public void setHybridAccuracy(Double hybridAccuracy) {
+        this.hybridAccuracy = hybridAccuracy;
+    }
+
+    public Map<String, Integer> getBertConfusionMatrix() {
+        return bertConfusionMatrix;
+    }
+
+    public void setBertConfusionMatrix(Map<String, Integer> bertConfusionMatrix) {
+        this.bertConfusionMatrix = bertConfusionMatrix;
+    }
+
+    public Map<String, Integer> getHybridConfusionMatrix() {
+        return hybridConfusionMatrix;
+    }
+
+    public void setHybridConfusionMatrix(Map<String, Integer> hybridConfusionMatrix) {
+        this.hybridConfusionMatrix = hybridConfusionMatrix;
+    }
+}

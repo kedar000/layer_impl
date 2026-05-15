@@ -1,0 +1,22 @@
+package org.examplemodulespringboot.imple_layer_and_model.utils;
+
+import org.examplemodulespringboot.imple_layer_and_model.model.QuestionType;
+
+public class LabelMapper {
+
+    public static QuestionType fromLabel(Integer label) {
+
+        return switch (label) {
+
+            case 0 -> QuestionType.PASSAGE;
+
+            case 1 -> QuestionType.MCQ;
+
+            case 2 -> QuestionType.MAIN;
+
+            case 3 -> QuestionType.SUB;
+
+            default -> QuestionType.MAIN;
+        };
+    }
+}
