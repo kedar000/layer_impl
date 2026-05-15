@@ -1,0 +1,26 @@
+package org.examplemodulespringboot.imple_layer_and_model.dto;
+
+import org.examplemodulespringboot.imple_layer_and_model.model.QuestionType;
+
+public class PredictionResult {
+
+    private QuestionType predictedType;
+
+    private Double confidence;
+
+    public QuestionType getPredictedType() {
+        return predictedType;
+    }
+
+    public void setPredictedType(QuestionType predictedType) {
+        this.predictedType = predictedType;
+    }
+
+    public Double getConfidence() {
+        return confidence;
+    }
+
+    public void setConfidence(Double confidence) {
+        this.confidence = confidence;
+    }
+}

@@ -1,0 +1,26 @@
+package org.examplemodulespringboot.imple_layer_and_model.dto;
+
+import java.util.List;
+
+public class BatchPredictionResponse {
+
+    private Integer totalQuestions;
+
+    private List<FinalPredictionResponse> predictions;
+
+    public Integer getTotalQuestions() {
+        return totalQuestions;
+    }
+
+    public void setTotalQuestions(Integer totalQuestions) {
+        this.totalQuestions = totalQuestions;
+    }
+
+    public List<FinalPredictionResponse> getPredictions() {
+        return predictions;
+    }
+
+    public void setPredictions(List<FinalPredictionResponse> predictions) {
+        this.predictions = predictions;
+    }
+}
