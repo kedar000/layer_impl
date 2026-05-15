@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import dto.FinalPredictionResponse;
+import dto.VerificationResult;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,20 +37,59 @@ public class UploadController {
 
         for (QuestionData q : questions) {
 
+            // =================================================
+            // STEP 1 → BERT PREDICTION
+            // =================================================
+
             PredictionResult prediction =
                     bertService.predict(q.getQuestion());
+
+            // =================================================
+            // STEP 2 → VERIFICATION
+            // =================================================
+
+            VerificationResult verification =
+                    verificationService.verify(
+                            q.getQuestion(),
+                            prediction.getPredictedType()
+                    );
+
+            // =================================================
+            // STEP 3 → BUILD RESPONSE
+            // =================================================
 
             FinalPredictionResponse response =
                     new FinalPredictionResponse();
 
-            response.setQuestion(q.getQuestion());
+            response.setQuestion(
+                    q.getQuestion()
+            );
 
+            // BERT
             response.setBertPrediction(
                     prediction.getPredictedType()
             );
 
             response.setConfidence(
                     prediction.getConfidence()
+            );
+
+            // Verification
+            response.setVerified(
+                    verification.getVerified()
+            );
+
+            response.setVerificationScore(
+                    verification.getVerificationScore()
+            );
+
+            response.setVerificationReason(
+                    verification.getReason()
+            );
+
+            // Final Corrected Prediction
+            response.setFinalPrediction(
+                    verification.getVerifiedType()
             );
 
             predictions.add(response);
@@ -58,7 +100,9 @@ public class UploadController {
 
         finalResponse.setPredictions(predictions);
 
-        finalResponse.setTotalQuestions(predictions.size());
+        finalResponse.setTotalQuestions(
+                predictions.size()
+        );
 
         return finalResponse;
     }
