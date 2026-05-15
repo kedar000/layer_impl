@@ -1,0 +1,1 @@
+POST http://localhost:8080/api/verify?question=a)%20What%20is%20AI?%20b)%20Explain%20ML?%20c)%20Explain%20NLP?&predictedType=MCQ
