@@ -1,36 +1,59 @@
-DESC CLEANUP RULES
+OPTION LABEL HANDLING
 
-- Do NOT start desc with the question number.
-- Remove leading question numbering from desc while preserving the actual question text.
+Option labels are structural markers and are NOT part of the option content.
+
+Remove option labels such as:
+- A.
+- B.
+- C.
+- D.
+- A)
+- B)
+- C)
+- D)
+- a.
+- b.
+- c.
+- d.
+- (A)
+- (B)
+- (C)
+- (D)
+- I.
+- II.
+- III.
+- IV.
+
+when they are used only as option identifiers.
+
+Preserve only the actual option content.
 
 Examples:
 
-"1. What is Java?"
-→ "What is Java?"
+Source:
+<strong>A.</strong> 6
 
-"Q5. Explain OOP concepts."
-→ "Explain OOP concepts."
+Output:
+"<strong>6</strong>"
 
-"25) Which region recorded the highest sales?"
-→ "Which region recorded the highest sales?"
+Source:
+A. <strong>6</strong>
 
-"Question 7: Explain normalization."
-→ "Explain normalization."
+Output:
+"<strong>6</strong>"
 
-For grouped passage/direction/case-study questions:
-- Preserve the shared passage/direction/case-study text.
-- Remove the leading number only from the individual question text appended to desc.
+Source:
+b. <mark>Python</mark>
 
-Example:
+Output:
+"<mark>Python</mark>"
 
-Directions (25–27):
-Study the chart.
+Source:
+C) Java
 
-25. Which region recorded the highest sales?
+Output:
+"Java"
 
-Output desc:
-
-"Directions (25–27):\nStudy the chart.\nWhich region recorded the highest sales?"
 
 
 
@@ -55,30 +78,36 @@ Output desc:
 
 OPTION HTML PRESERVATION RULES
 
-- Preserve HTML tags exactly as they appear in the source option.
-- Do NOT strip formatting tags from options.
-- Preserve tags such as:
-  - <strong>
-  - <b>
-  - <i>
-  - <em>
-  - <mark>
-  - <highlight>
-  - <u>
-  - and any other HTML tags present in the source.
+Preserve HTML tags that belong to the actual option content.
+
+Do NOT preserve HTML tags that are used only around option labels.
 
 Examples:
 
-Input:
-A. <strong>Java</strong>
+Source:
+<strong>A.</strong> 6
 
-Output option:
-"<strong>Java</strong>"
+Output:
+"<strong>6</strong>"   (preferred)
+or
+"6"
 
-Input:
+Source:
+A. <strong>6</strong>
+
+Output:
+"<strong>6</strong>"
+
+Source:
+<mark>B.</mark> Python
+
+Output:
+"Python"
+
+Source:
 B. <mark>Python</mark>
 
-Output option:
+Output:
 "<mark>Python</mark>"
 
 
@@ -95,14 +124,34 @@ Output option:
 
 
 
-9. Verify that desc does not begin with question numbering such as:
-   - 1.
-   - Q1
-   - 25)
-   - Question 7
-   etc.
 
-10. Verify that HTML tags present in source options are preserved in the corresponding options array entries.
+
+
+
+
+11. Verify that options do not contain option labels such as:
+    A.
+    B.
+    C.
+    D.
+    a.
+    b.
+    c.
+    d.
+    A)
+    B)
+    C)
+    D)
+
+12. Verify that only HTML belonging to the actual option content is preserved.
+
+
+
+
+
+
+
+
 
 
 
