@@ -1,32 +1,38 @@
-OPTION LABEL HANDLING
+OPTIONS RULES
 
-Option labels are structural markers and are NOT part of the option content.
+For MCQ/MCA:
 
-Remove option labels such as:
-- A.
-- B.
-- C.
-- D.
-- A)
-- B)
-- C)
-- D)
-- a.
-- b.
-- c.
-- d.
-- (A)
-- (B)
-- (C)
-- (D)
-- I.
-- II.
-- III.
-- IV.
+1. Extract only the actual option value.
 
-when they are used only as option identifiers.
+2. Option labels are structural markers and MUST NOT appear in the final options array.
 
-Preserve only the actual option content.
+Remove labels such as:
+A.
+B.
+C.
+D.
+A)
+B)
+C)
+D)
+a.
+b.
+c.
+d.
+(a)
+(b)
+(c)
+(d)
+I.
+II.
+III.
+IV.
+
+3. After removing the label, preserve the remaining option content exactly.
+
+4. If the option content contains HTML tags, preserve those HTML tags.
+
+5. If HTML tags are applied only to the option label, remove both the label and its associated formatting.
 
 Examples:
 
@@ -34,7 +40,7 @@ Source:
 <strong>A.</strong> 6
 
 Output:
-"<strong>6</strong>"
+"6"
 
 Source:
 A. <strong>6</strong>
@@ -47,6 +53,12 @@ b. <mark>Python</mark>
 
 Output:
 "<mark>Python</mark>"
+
+Source:
+a. <strong>53 years</strong>
+
+Output:
+"<strong>53 years</strong>"
 
 Source:
 C) Java
@@ -71,88 +83,21 @@ Output:
 
 
 
+VALIDATION CHECKS
 
+...
 
+9. No option value may begin with an option label.
 
+Invalid:
+"a. 28"
+"b. <strong>40</strong>"
+"<strong>A.</strong> 6"
 
-
-OPTION HTML PRESERVATION RULES
-
-Preserve HTML tags that belong to the actual option content.
-
-Do NOT preserve HTML tags that are used only around option labels.
-
-Examples:
-
-Source:
-<strong>A.</strong> 6
-
-Output:
-"<strong>6</strong>"   (preferred)
-or
+Valid:
+"28"
+"<strong>40</strong>"
 "6"
-
-Source:
-A. <strong>6</strong>
-
-Output:
-"<strong>6</strong>"
-
-Source:
-<mark>B.</mark> Python
-
-Output:
-"Python"
-
-Source:
-B. <mark>Python</mark>
-
-Output:
-"<mark>Python</mark>"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-11. Verify that options do not contain option labels such as:
-    A.
-    B.
-    C.
-    D.
-    a.
-    b.
-    c.
-    d.
-    A)
-    B)
-    C)
-    D)
-
-12. Verify that only HTML belonging to the actual option content is preserved.
-
-
-
-
-
-
-
-
-
 
 
 
