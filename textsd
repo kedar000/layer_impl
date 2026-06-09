@@ -1,0 +1,110 @@
+DESC CLEANUP RULES
+
+- Do NOT start desc with the question number.
+- Remove leading question numbering from desc while preserving the actual question text.
+
+Examples:
+
+"1. What is Java?"
+→ "What is Java?"
+
+"Q5. Explain OOP concepts."
+→ "Explain OOP concepts."
+
+"25) Which region recorded the highest sales?"
+→ "Which region recorded the highest sales?"
+
+"Question 7: Explain normalization."
+→ "Explain normalization."
+
+For grouped passage/direction/case-study questions:
+- Preserve the shared passage/direction/case-study text.
+- Remove the leading number only from the individual question text appended to desc.
+
+Example:
+
+Directions (25–27):
+Study the chart.
+
+25. Which region recorded the highest sales?
+
+Output desc:
+
+"Directions (25–27):\nStudy the chart.\nWhich region recorded the highest sales?"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+OPTION HTML PRESERVATION RULES
+
+- Preserve HTML tags exactly as they appear in the source option.
+- Do NOT strip formatting tags from options.
+- Preserve tags such as:
+  - <strong>
+  - <b>
+  - <i>
+  - <em>
+  - <mark>
+  - <highlight>
+  - <u>
+  - and any other HTML tags present in the source.
+
+Examples:
+
+Input:
+A. <strong>Java</strong>
+
+Output option:
+"<strong>Java</strong>"
+
+Input:
+B. <mark>Python</mark>
+
+Output option:
+"<mark>Python</mark>"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9. Verify that desc does not begin with question numbering such as:
+   - 1.
+   - Q1
+   - 25)
+   - Question 7
+   etc.
+
+10. Verify that HTML tags present in source options are preserved in the corresponding options array entries.
+
+
+
+
+
