@@ -89,3 +89,13 @@ public class QuestionOptionSanitizer {
         return cleaned.trim();
     }
 }
+
+
+
+
+
+
+private static final Pattern OPTION_LABEL_PATTERN =
+        Pattern.compile(
+                "^\\s*(?:\\([A-Za-z]\\)|[A-Za-z][.)]|\\([IVXLCDMivxlcdm]+\\)|[IVXLCDMivxlcdm]+[.)])\\s*"
+        );
