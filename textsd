@@ -1,70 +1,60 @@
-OPTIONS RULES
+PASSAGE / DIRECTION / CASE STUDY PROPAGATION RULE
 
-For MCQ/MCA:
+When a passage, direction block, case study, chart description, table description, image description, or shared context block is followed by multiple questions:
 
-1. Extract only the actual option value.
+1. Treat the passage/context as shared content.
 
-2. Option labels are structural markers and MUST NOT appear in the final options array.
+2. The shared content MUST be appended to EVERY related question in the group.
 
-Remove labels such as:
-A.
-B.
-C.
-D.
-A)
-B)
-C)
-D)
-a.
-b.
-c.
-d.
-(a)
-(b)
-(c)
-(d)
-I.
-II.
-III.
-IV.
+3. Do NOT append the passage only to the first question.
 
-3. After removing the label, preserve the remaining option content exactly.
+4. Continue attaching the same shared content to all subsequent questions until:
+   - a new passage begins, OR
+   - a new direction block begins, OR
+   - a new case study begins, OR
+   - a new section begins, OR
+   - the document ends.
 
-4. If the option content contains HTML tags, preserve those HTML tags.
+5. Every question belonging to the same group must contain:
+   - the complete shared passage/context
+   - the individual question text
+   - the individual options
+   - the individual answer
 
-5. If HTML tags are applied only to the option label, remove both the label and its associated formatting.
+6. The passage/context must be copied independently into each question object's desc field.
 
-Examples:
+7. Never create a separate question object for the passage itself.
 
-Source:
-<strong>A.</strong> 6
+Example:
+
+Passage:
+
+"India's population has increased significantly during the last decade."
+
+Questions:
+
+21. What is the main topic of the passage?
+22. Which decade is being discussed?
+23. What trend is described?
 
 Output:
-"6"
 
-Source:
-A. <strong>6</strong>
+Question 21 desc:
+"India's population has increased significantly during the last decade.
 
-Output:
-"<strong>6</strong>"
+What is the main topic of the passage?"
 
-Source:
-b. <mark>Python</mark>
+Question 22 desc:
+"India's population has increased significantly during the last decade.
 
-Output:
-"<mark>Python</mark>"
+Which decade is being discussed?"
 
-Source:
-a. <strong>53 years</strong>
+Question 23 desc:
+"India's population has increased significantly during the last decade.
 
-Output:
-"<strong>53 years</strong>"
+What trend is described?"
 
-Source:
-C) Java
-
-Output:
-"Java"
+The passage must appear in ALL three question objects.
 
 
 
@@ -83,22 +73,13 @@ Output:
 
 
 
-VALIDATION CHECKS
-
-...
-
-9. No option value may begin with an option label.
-
-Invalid:
-"a. 28"
-"b. <strong>40</strong>"
-"<strong>A.</strong> 6"
-
-Valid:
-"28"
-"<strong>40</strong>"
-"6"
 
 
+PASSAGE VALIDATION
 
+If a passage/direction/case-study block is associated with multiple questions:
+
+- Verify that the shared content exists in every related question object.
+- Verify that no related question is missing the shared content.
+- If one question in the group contains the passage and another does not, correct the output before returning JSON.
 
